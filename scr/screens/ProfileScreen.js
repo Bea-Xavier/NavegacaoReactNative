@@ -1,29 +1,28 @@
-import React from "react";
-import { View, Text, Button, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Pressable, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 
 export default function ProfileScreen({ navigation }) {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Profile Screen</Text>
-            <View style={styles.buttonContainer}>
-                <Button
-                    title="Go to Home"
-                    onPress={() => navigation.navigate('Home')}
-                />
-            </View>
-            <View style={styles.buttonContainer}>
-                <Button
-                    title="Go to Details"
-                    onPress={() => navigation.navigate('Details')} />
-            </View>
-            <View style={styles.buttonContainer}>
-            <Button
-            title="Go Back"
-            onPress={() => navigation.goBack()}
-            />
-            </View>
+            <Text style={styles.title}>☔ Profile Screen ☔</Text>
+
+            <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate('Home')}>
+                <Text style={styles.textButton}>
+                    Go to Home
+                </Text>
+            </Pressable>
+
+            <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate('Details')}>
+                <Text style={styles.textButton}>
+                    Go to Details
+                </Text>
+            </Pressable>
+
+            <TouchableOpacity style={styles.goback} onPress={() => navigation.goBack()}>
+                <Text style={{ color: '#3e0364', fontSize: 20 }}>Go back</Text>
+            </TouchableOpacity>
+            
         </View>
     );
 }
@@ -33,16 +32,33 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#e6e6fa', //Cor de fundo da tela
+        backgroundColor: '#8240bd',
     },
     title: {
-        fontSize: 24,
+        fontSize: 35,
         marginBottom: 20,
     },
     buttonContainer: {
-        backgroundColor: '#dda0dd', //Cor de fundo do container do botão
+        fontSize: 20,
+        backgroundColor: '#440070',
         margin: 10,
-        width: windowWidth * 0.5, //50% da largura da tela
+        width: windowWidth * 0.55,
         borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+    },
+    textButton: {
+        color: '#FFFAFA',
+        fontSize: 25,
+    },
+    goback: {
+        backgroundColor: '#FFFAFA',
+        marginTop: 30,
+        padding: 10,
+        borderRadius: 5,
+        marginBottom: 20,
+        alignItems: 'center',
+        width: windowWidth * 0.3,
     },
 });
