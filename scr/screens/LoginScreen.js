@@ -8,6 +8,7 @@ export default function LoginScreen({ navigation }) {
 
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
+    const logado = AsyncStorage.setItem('logado');
 
     const authentication = async () => {
         const defaultUser = await AsyncStorage.getItem('user');
@@ -20,6 +21,7 @@ export default function LoginScreen({ navigation }) {
         if (user === defaultUser && password === defaultPassword) {
             alert('Login realizado com sucesso!');
             navigation.navigate('Home');
+            await AsyncStorage.setItem('logado', true);
         } else {
             alert('Usuário ou senha incorretos');
             setUser('');

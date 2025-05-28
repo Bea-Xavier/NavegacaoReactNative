@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from './scr/screens/HomeScreen';
 import DetailsScreen from './scr/screens/DetailsScreen';
 import ProfileScreen from './scr/screens/ProfileScreen';
@@ -7,6 +8,14 @@ import LoginScreen from './scr/screens/LoginScreen';
 import SignUpScreen from './scr/screens/SignUpScreen';
 
 const Stack = createStackNavigator();
+
+const verificacaologin = async () => {
+  try {
+    
+  } catch (error) {
+    
+  }
+}
 
 export default function App() {
   return (
