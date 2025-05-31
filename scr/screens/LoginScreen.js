@@ -8,7 +8,6 @@ export default function LoginScreen({ navigation }) {
 
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
-    const logado = AsyncStorage.setItem('logado');
 
     const authentication = async () => {
         const defaultUser = await AsyncStorage.getItem('user');
@@ -19,9 +18,11 @@ export default function LoginScreen({ navigation }) {
         }
 
         if (user === defaultUser && password === defaultPassword) {
+            await AsyncStorage.setItem('logado', 'true');
+            const check = await AsyncStorage.getItem('logado');
+            console.log('Valor salvo:', check);
             alert('Login realizado com sucesso!');
             navigation.navigate('Home');
-            await AsyncStorage.setItem('logado', true);
         } else {
             alert('Usuário ou senha incorretos');
             setUser('');
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#8240bd', 
+        backgroundColor: '#8240bd',
     },
     title: {
         fontSize: 35,
@@ -76,9 +77,9 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         fontSize: 20,
-        backgroundColor: '#440070', 
+        backgroundColor: '#440070',
         margin: 10,
-        width: windowWidth * 0.35, 
+        width: windowWidth * 0.35,
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
@@ -89,10 +90,10 @@ const styles = StyleSheet.create({
         fontSize: 25,
     },
     inputContainer: {
-        backgroundColor: '#f5f5dc', 
+        backgroundColor: '#f5f5dc',
         padding: 10,
         borderRadius: 10,
-        border: '3px solid #4d007e', 
+        border: '3px solid #4d007e',
         marginBottom: 20,
         width: windowWidth * 0.6,
         fontSize: 18
@@ -104,6 +105,6 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginBottom: 20,
         alignItems: 'center',
-        width: windowWidth * 0.75, 
+        width: windowWidth * 0.75,
     },
 });

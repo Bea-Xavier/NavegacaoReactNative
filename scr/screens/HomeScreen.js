@@ -1,4 +1,5 @@
 import { View, Text, Pressable, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -19,7 +20,14 @@ export default function HomeScreen({ navigation }) {
                 </Text>
             </Pressable>
 
-            <TouchableOpacity style={styles.logoutButton} onPress={() => navigation.navigate('Login')}>
+            <TouchableOpacity
+                style={styles.logoutButton}
+                onPress={async () => {
+                    await AsyncStorage.setItem('logado', 'false');
+                    const check = await AsyncStorage.getItem('logado');
+                    console.log('Valor salvo:', check);
+                    navigation.navigate('Login')
+                }}>
                 <Text style={{ color: '#3e0364', fontSize: 20 }}>Logout</Text>
             </TouchableOpacity>
 
