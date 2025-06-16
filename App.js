@@ -15,7 +15,6 @@ export default function App() {
 
   const [initialRoute, setInitialRoute] = useState();
 
-  //Colocar um bloco try catch, e personalizar tela de carregamento
 
   useEffect(() => {
     const verificacaoLogin = async () => {
